@@ -61,23 +61,39 @@ function Login({ navigation }) {
 
 function Lista({ navigation }) {
   const [contatos, setContatos] = useState([
-    { nome: 'Marcos Andrade', telefone: '81 98855-3424' },
-    { nome: 'Patrícia Tavares', telefone: '81 99876-5332' },
-    { nome: 'Rodrigo Antunes', telefone: '81 98776-5525' }, //esses já estavam na atvd
+    { nome: 'Marcos Andrade', telefone: '81 988553424', email: 'marcos@gmail.com' },
+    { nome: 'Patrícia Tavares', telefone: '81 998765332', email: 'patricia@gmail.com' },
+    { nome: 'Rodrigo Antunes', telefone: '81 987765525', email: 'rodrigo@gmail.com' },
   ]);
 
   return (
-    <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.header}>
         <Text style={styles.headerText}>LISTA DE CONTATOS</Text>
-         <TouchableOpacity onPress={() => navigation.navigate('CadastroContato', { setContatos, contatos })}>
-          <FontAwesome name="plus" size={22} color="white" />
+
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('CadastroContato', { setContatos, contatos })
+          }
+        >
+          <FontAwesome name="plus" size={22} color="#fff" />
         </TouchableOpacity>
       </View>
 
       <ScrollView>
         {contatos.map((item, index) => (
-          <TouchableOpacity key={index} style={styles.card} onPress={() => navigation.navigate('AlterarExcluir', { contato: item, index, contatos, setContatos, })} >
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() =>
+              navigation.navigate('AlterarExcluir', {
+                contato: item,
+                index,
+                contatos,
+                setContatos,
+              })
+            }
+          >
             <Text style={styles.nome}>{item.nome}</Text>
             <Text>{item.telefone}</Text>
           </TouchableOpacity>
@@ -85,7 +101,7 @@ function Lista({ navigation }) {
       </ScrollView>
     </SafeAreaView>
   );
-  }  
+}
 
 
 // ------------ TELA DE CADASTRO DE USUÁRIOS ------------
@@ -199,7 +215,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Lista" component={Lista} />
+          <Stack.Screen name="Lista" component={Lista} options={{headerTitleAlign: 'center'}}/>
           <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
           <Stack.Screen name="CadastroContato" component={CadastroContato} />
           <Stack.Screen name="AlterarExcluir" component={AlterarExcluir} />
