@@ -213,7 +213,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Lista" component={Lista} options={{headerTitleAlign: 'center'}}/>
           <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
